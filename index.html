@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Take Back Your Feed</title>
+<meta name="description" content="A 7-day challenge guide for AITU students: where Instagram and YouTube hide their feed controls, plus one small step per day.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23d9480f'/%3E%3Cpath d='M8 17l5 5 11-12' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+:root{color-scheme:light}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: one narrow reading column; a phone-settings vernacular — menu paths as breadcrumb chips, tap counts as badges */
+:root {
+  --bg: #f5f6f8;
+  --surface: #ffffff;
+  --ink: #141820;
+  --muted: #5d6573;
+  --line: #e1e4ea;
+  --accent: #d9480f;
+  --accent-soft: #fde7dc;
+  --ok: #0f7b6c;
+  --ok-soft: #dcf2ee;
+  --warn: #a15c00;
+  --warn-soft: #fdf0d8;
+  --font-display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151b; --surface: #1a1e26; --ink: #e9ecf1; --muted: #9aa3b2; --line: #2b313c;
+    --accent: #ff7a3d; --accent-soft: #3a2116; --ok: #4fc7b4; --ok-soft: #12302b;
+    --warn: #f0b45a; --warn-soft: #36290f; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12151b; --surface: #1a1e26; --ink: #e9ecf1; --muted: #9aa3b2; --line: #2b313c;
+  --accent: #ff7a3d; --accent-soft: #3a2116; --ok: #4fc7b4; --ok-soft: #12302b;
+  --warn: #f0b45a; --warn-soft: #36290f; color-scheme: dark;
+}
+
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.6; }
+.wrap { max-width: 720px; margin: 0 auto; padding-block: 40px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 48px; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.2rem, 7vw, 3.2rem); letter-spacing: -0.02em; }
+h2 { font-size: 1.6rem; letter-spacing: -0.01em; }
+h3 { font-size: 1.12rem; }
+p { margin: 0; }
+.eyebrow { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); font-weight: 600; }
+.lead { font-size: 1.12rem; color: var(--muted); max-width: 60ch; }
+section { display: grid; gap: 20px; }
+
+/* hero */
+header { display: grid; gap: 16px; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 20px; color: var(--muted); font-size: 0.92rem; }
+.facts b { color: var(--ink); font-weight: 600; }
+
+/* why */
+.why { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; display: grid; gap: 12px; }
+.why p { max-width: 62ch; }
+.why .q { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; }
+
+/* tabs */
+.tabs { display: inline-flex; gap: 4px; padding: 4px; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; justify-self: start; }
+.tab { font: 600 0.95rem var(--font-body); color: var(--muted); background: none; border: 0; border-radius: 999px; padding: 8px 18px; cursor: pointer; }
+.tab[aria-selected="true"] { background: var(--ink); color: var(--bg); }
+.tab:focus-visible, .day input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.tools { display: grid; gap: 14px; }
+.tool { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: grid; gap: 12px; min-width: 0; }
+.tool-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px; }
+.badges { display: flex; flex-wrap: wrap; gap: 6px; }
+.badge { font-size: 0.76rem; font-weight: 600; padding: 3px 9px; border-radius: 999px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.badge.taps { background: var(--accent-soft); color: var(--accent); }
+.badge.off { background: var(--warn-soft); color: var(--warn); }
+.badge.na { background: var(--line); color: var(--muted); }
+.tool > p { color: var(--muted); }
+.path { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 0.8rem; }
+.path span { background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 3px 8px; }
+.path i { font-style: normal; color: var(--muted); }
+.note { font-size: 0.9rem; padding: 10px 12px; border-radius: 10px; background: var(--warn-soft); color: var(--ink); }
+.note b { color: var(--warn); }
+.hint { font-size: 0.88rem; color: var(--muted); }
+.shots { margin: 4px 0 0; display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); align-items: start; max-width: 560px; min-width: 0; }
+.shots.one { grid-template-columns: minmax(0, 360px); }
+.shots img { width: 100%; max-width: 100%; height: auto; display: block; border-radius: 10px; border: 1px solid var(--line); }
+.tool > *, .tool-head > * { min-width: 0; }
+.path span { overflow-wrap: anywhere; }
+.ru { font-family: var(--font-body); color: var(--muted); }
+
+/* plan */
+.days { display: grid; gap: 10px; list-style: none; padding: 0; margin: 0; }
+.day { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
+.day label { display: grid; grid-template-columns: auto 1fr; gap: 14px; padding: 16px 18px; cursor: pointer; align-items: start; }
+.day input { position: absolute; opacity: 0; pointer-events: none; }
+.day .box { width: 26px; height: 26px; border-radius: 8px; border: 2px solid var(--line); display: grid; place-items: center;
+  font: 700 0.8rem var(--font-display); color: var(--muted); margin-top: 1px; }
+.day input:checked + .box { background: var(--ok); border-color: var(--ok); color: var(--surface); }
+.day input:checked ~ .body h3 { text-decoration: line-through; text-decoration-color: var(--ok); }
+.day .body { display: grid; gap: 4px; min-width: 0; }
+.day .body p { color: var(--muted); font-size: 0.95rem; }
+.progress { font-size: 0.92rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.progress b { color: var(--ok); }
+
+/* finish */
+.finish { background: var(--ink); color: var(--bg); border-radius: 16px; padding: 24px; display: grid; gap: 10px; }
+.finish h2 { color: var(--bg); }
+.finish p { opacity: 0.85; max-width: 60ch; }
+footer { font-size: 0.85rem; color: var(--muted); display: grid; gap: 6px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .tab, .day .box { transition: background-color .15s, color .15s, border-color .15s; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">7-day challenge · AITU</span>
+    <h1>Take Back Your Feed</h1>
+    <p class="lead">Instagram and YouTube already have buttons that let you steer your feed. Most of them are switched off or buried in settings. This guide shows where they are, and the plan below gives you one small step a day.</p>
+    <div class="facts">
+      <span><b>10 min</b> setup on day 1</span>
+      <span><b>2–5 min</b> on the other days</span>
+      <span><b>5 questions</b> at the end</span>
+    </div>
+  </header>
+
+  <div class="why">
+    <p class="q">Who chose the last video you watched?</p>
+    <p>A recommendation feed is built to keep you watching. By default it picks for you: the personalised feed is on, time limits are off, and the scroll never ends. That is fine if you chose it. The point of this week is to make that a choice you actually made.</p>
+    <p class="hint">Menu names change between app versions. If a step looks different on your phone, type the feature name into the search bar at the top of Settings.</p>
+  </div>
+
+  <section aria-labelledby="tools-h">
+    <h2 id="tools-h">Where the controls are</h2>
+    <div class="tabs" role="tablist" aria-label="Choose an app">
+      <button class="tab" role="tab" id="tab-instagram" aria-controls="panel-instagram" aria-selected="true">Instagram</button>
+      <button class="tab" role="tab" id="tab-youtube" aria-controls="panel-youtube" aria-selected="false">YouTube</button>
+    </div>
+
+    <div class="tools" role="tabpanel" id="panel-instagram" aria-labelledby="tab-instagram">
+      <article class="tool">
+        <div class="tool-head"><h3>“Not interested”</h3><div class="badges"><span class="badge taps">2 taps</span></div></div>
+        <p>Tells Instagram to show fewer posts like this one. The quickest way to clean a feed.</p>
+        <div class="path"><span>Menu icon on a Reel (⋯ on a post)</span><i>›</i><span>Not interested <b class="ru">· Не интересует</b></span></div>
+        <figure class="shots"><img src="img/ig-reel-menu-icon.webp" width="552" height="348" alt="The menu icon in the bottom right corner of a Reel, circled" loading="lazy"><img src="img/ig-not-interested.webp" width="720" height="408" alt="Reel menu with the Not interested row highlighted" loading="lazy"></figure>
+      </article>
+      <article class="tool">
+        <div class="tool-head"><h3>“Why you’re seeing this post”</h3><div class="badges"><span class="badge taps">2 taps</span></div></div>
+        <p>Shows the reasons a post landed in your feed: an account you follow, something you liked, your activity.</p>
+        <div class="path"><span>Menu icon on a Reel (⋯ on a post)</span><i>›</i><span>Why you’re seeing this post <b class="ru">· Почему вы видите эту публикацию</b></span></div>
+        <figure class="shots one"><img src="img/ig-why.webp" width="720" height="408" alt="Reel menu with the Why you’re seeing this post row highlighted" loading="lazy"></figure>
+      </article>
+      <article class="tool">
+        <div class="tool-head"><h3>Following feed</h3><div class="badges"><span class="badge taps">2 taps</span><span class="badge off">Not default</span></div></div>
+        <p>Only posts from accounts you follow, newest first, with no suggestions mixed in.</p>
+        <div class="path"><span>Instagram logo (top left)</span><i>›</i><span>Following</span></div>
+      </article>
+      <article class="tool">
+        <div class="tool-head"><h3>Pause suggested posts for 30 days</h3><div class="badges"><span class="badge taps">3 taps</span><span class="badge off">Off by default</span></div></div>
+        <p>One switch hides suggested posts in your main feed for a month. You can turn it back off any time.</p>
+        <div class="path"><span>Profile</span><i>›</i><span>☰</span><i>›</i><span>Content preferences <b class="ru">· Настройки контента</b></span><i>›</i><span>Block suggested posts in feed</span></div>
+        <figure class="shots"><img src="img/ig-settings-content.webp" width="720" height="440" alt="Instagram settings with Content preferences highlighted" loading="lazy"><img src="img/ig-snooze.webp" width="720" height="368" alt="The switch that hides suggested posts in the feed for 30 days, highlighted" loading="lazy"></figure>
+      </article>
+      <article class="tool">
+        <div class="tool-head"><h3>Reset suggested content</h3><div class="badges"><span class="badge taps">3 taps</span></div></div>
+        <p>Clears what Instagram has learned about your interests for Feed, Explore and Reels. Accounts you follow and ads stay the same.</p>
+        <div class="path"><span>Profile</span><i>›</i><span>☰</span><i>›</i><span>Content preferences <b class="ru">· Настройки контента</b></span><i>›</i><span>Reset suggested content <b class="ru">· Сбросить рекомендуемый контент</b></span></div>
+        <figure class="shots one"><img src="img/ig-reset.webp" width="720" height="280" alt="Content preferences with Reset suggested content highlighted" loading="lazy"></figure>
+        <p class="note"><b>Can’t be undone.</b> Your recommendations start from zero. Skip it if you like your feed as it is.</p>
+      </article>
+      <article class="tool">
+        <div class="tool-head"><h3>Watch and search history</h3><div class="badges"><span class="badge taps">3 taps</span></div></div>
+        <p>Delete what you searched for and the activity Instagram uses to pick suggestions.</p>
+        <div class="path"><span>Profile</span><i>›</i><span>☰</span><i>›</i><span>Your activity <b class="ru">· Ваши действия</b></span></div>
+        <figure class="shots one"><img src="img/ig-settings-activity.webp" width="720" height="524" alt="Instagram settings with Your activity highlighted" loading="lazy"></figure>
+      </article>
+      <article class="tool">
+        <div class="tool-head"><h3>Daily limit and sleep mode</h3><div class="badges"><span class="badge taps">3 taps</span><span class="badge off">Off by default</span></div></div>
+        <p>A daily limit tells you when you have used up your time for the day. Sleep mode quiets the app during the hours you set. The same screen shows your average time per day.</p>
+        <div class="path"><span>Profile</span><i>›</i><span>☰</span><i>›</i><span>Time management <b class="ru">· Управление временем</b></span><i>›</i><span>Daily limit <b class="ru">· Дневной лимит</b></span></div>
+        <figure class="shots"><img src="img/ig-settings-time.webp" width="720" height="524" alt="Instagram settings with Time management highlighted" loading="lazy"><img src="img/ig-daily-limit.webp" width="720" height="256" alt="Time management screen with Daily limit highlighted, currently off" loading="lazy"></figure>
+      </article>
+    </div>
+
+    <div class="tools" role="tabpanel" id="panel-youtube" aria-labelledby="tab-youtube" hidden>
+      <article class="tool">
+        <div class="tool-head"><h3>“Not interested” / “Don’t recommend channel”</h3><div class="badges"><span class="badge taps">2 taps</span></div></div>
+        <p>Removes a video from your home feed, or stops a whole channel from being suggested.</p>
+        <div class="path"><span>⋮ on a Short or next to a video</span><i>›</i><span>Not interested <b class="ru">· Не интересует</b></span></div>
+        <figure class="shots one"><img src="img/yt-not-interested.webp" width="720" height="560" alt="YouTube Shorts menu with Not interested and Don’t recommend channel highlighted" loading="lazy"></figure>
+      </article>
+      <article class="tool">
+        <div class="tool-head"><h3>Clear what YouTube knows</h3><div class="badges"><span class="badge taps">3 taps</span></div></div>
+        <p>YouTube has no single reset button. You reset recommendations from the history page: clear your watch history, and delete the “YouTube recommendation data” you gave when tuning your home feed.</p>
+        <div class="path"><span>You</span><i>›</i><span>⚙ Settings</span><i>›</i><span>Manage all history <b class="ru">· Управление историей</b></span><i>›</i><span>Delete <b class="ru">· Удалить</b></span></div>
+        <figure class="shots"><img src="img/yt-settings-history.webp" width="720" height="300" alt="YouTube settings with Manage all history highlighted" loading="lazy"><img src="img/yt-reco-data.webp" width="720" height="394" alt="YouTube recommendation data block with the Delete link highlighted" loading="lazy"></figure>
+        <p class="note"><b>Can’t be undone.</b> Your history and the recommendations built on it are gone.</p>
+      </article>
+      <article class="tool">
+        <div class="tool-head"><h3>Pause watch history</h3><div class="badges"><span class="badge taps">3 taps</span></div></div>
+        <p>While paused, what you watch is not used for recommendations. You can switch it back on any time.</p>
+        <div class="path"><span>You</span><i>›</i><span>⚙ Settings</span><i>›</i><span>Manage all history <b class="ru">· Управление историей</b></span><i>›</i><span>Pause watch history</span></div>
+      </article>
+      <article class="tool">
+        <div class="tool-head"><h3>Daily limit for Shorts</h3><div class="badges"><span class="badge taps">3 taps</span><span class="badge off">Off by default</span></div></div>
+        <p>Caps how long you can scroll Shorts each day, from 15 minutes to 2 hours. The same screen shows how much you watched this week.</p>
+        <div class="path"><span>You</span><i>›</i><span>⚙ Settings</span><i>›</i><span>Time management <b class="ru">· Тайм-менеджмент</b></span><i>›</i><span>Shorts limit <b class="ru">· Ограничение для Shorts</b></span></div>
+        <figure class="shots"><img src="img/yt-settings-time.webp" width="720" height="492" alt="YouTube settings with Time management highlighted" loading="lazy"><img src="img/yt-shorts-limit.webp" width="720" height="694" alt="Shorts limit options from 0 minutes to 2 hours, with 30 minutes highlighted" loading="lazy"></figure>
+      </article>
+      <article class="tool">
+        <div class="tool-head"><h3>“Why am I seeing this?”</h3><div class="badges"><span class="badge na">Ads only</span></div></div>
+        <p>YouTube explains why you see an ad, but not why a regular video or Short was recommended. This is one of the gaps we found when comparing the two apps.</p>
+        <figure class="shots one"><img src="img/yt-why-ad.webp" width="720" height="418" alt="YouTube ad centre showing Why you’re seeing this ad" loading="lazy"></figure>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="plan-h">
+    <div style="display:grid;gap:6px">
+      <h2 id="plan-h">The 7-day plan</h2>
+      <p class="progress" id="progress" aria-live="polite"><b>0</b> of 7 days done</p>
+    </div>
+    <ol class="days" id="days">
+      <li class="day"><label><input type="checkbox" id="d1"><span class="box">1</span><span class="body"><h3>Set up your controls</h3><p>Turn on a daily limit on Instagram and a Shorts limit on YouTube. Decide whether you want a full reset.</p></span></label></li>
+      <li class="day"><label><input type="checkbox" id="d2"><span class="box">2</span><span class="body"><h3>Say “not interested” five times</h3><p>Each time a post wastes your time, mark it instead of scrolling past. Aim for at least five today.</p></span></label></li>
+      <li class="day"><label><input type="checkbox" id="d3"><span class="box">3</span><span class="body"><h3>Ask the app why</h3><p>Open “Why you’re seeing this post” on three suggested posts in Instagram. Did any reason surprise you?</p></span></label></li>
+      <li class="day"><label><input type="checkbox" id="d4"><span class="box">4</span><span class="body"><h3>Following only</h3><p>Use only the Following feed on Instagram today. On YouTube, search for what you want instead of opening Home.</p></span></label></li>
+      <li class="day"><label><input type="checkbox" id="d5"><span class="box">5</span><span class="body"><h3>Name your reason first</h3><p>Before you open a feed, say in one sentence why you are opening it. Close the app when that is done.</p></span></label></li>
+      <li class="day"><label><input type="checkbox" id="d6"><span class="box">6</span><span class="body"><h3>Pause YouTube history</h3><p>Pause watch history for the day and notice how your home feed changes when YouTube cannot learn from you.</p></span></label></li>
+      <li class="day"><label><input type="checkbox" id="d7"><span class="box">7</span><span class="body"><h3>Look back</h3><p>Which change did you keep? Which did you turn off? Then answer the five questions we send you.</p></span></label></li>
+    </ol>
+  </section>
+
+  <div class="finish">
+    <h2>On day 7</h2>
+    <p>We will send you a link to five short questions in Telegram. Use the same code word you created in the first survey, so we can compare before and after without knowing who you are.</p>
+  </div>
+
+  <footer>
+    <p>Part of a philosophy course project at Astana IT University on recommendation algorithms and personal autonomy.</p>
+    <p>Tap counts measured on the Android apps in November 2026, starting from the main feed screen.</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  const tabs = document.querySelectorAll('.tab');
+  function show(id) {
+    tabs.forEach(t => {
+      const on = t.id === 'tab-' + id;
+      t.setAttribute('aria-selected', on);
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+  }
+  tabs.forEach(t => t.addEventListener('click', () => {
+    const id = t.id.replace('tab-', '');
+    show(id);
+    if (location.hash !== '#' + id) history.replaceState(null, '', '#' + id);
+  }));
+  const fromHash = () => { const h = location.hash.slice(1); if (h === 'instagram' || h === 'youtube') show(h); };
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
+
+  const KEY = 'tbyf-days';
+  const boxes = [...document.querySelectorAll('#days input')];
+  const progress = document.getElementById('progress');
+  let saved = [];
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) {}
+  boxes.forEach(b => { b.checked = saved.includes(b.id); });
+  function update() {
+    const done = boxes.filter(b => b.checked);
+    progress.innerHTML = '<b>' + done.length + '</b> of 7 days done';
+    try { localStorage.setItem(KEY, JSON.stringify(done.map(b => b.id))); } catch (e) {}
+  }
+  boxes.forEach(b => b.addEventListener('change', update));
+  update();
+})();
+</script>
+</body>
+</html>
